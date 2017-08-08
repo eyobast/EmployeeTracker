@@ -7,29 +7,25 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <title>New York Times App</title>
-
+    <title>Employee Data</title>
+    <script src = "assets/css/style.css"></script>
+ <!--    <script src = "https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script> -->
     <style type="text/css">
-        .jumbotron {
+     .jumbotron {
             text-align: center;
             background-color: black; 
             color: white;
-        }
-
-        body {
-        font-family: 'Montserrat', sans-serif;
-        }
-
-
+        }  
     </style>
 </head>
 
 <body>
+   <script src = "https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
 
 <div class="container">
     <div class="jumbotron">
-        <h1><span class="glyphicon glyphicon-book"></span>Employee Data Managemnt</h1>
-        <p><span class="glyphicon glyphicon-book"></span>A Comprehensive Directory of Employee Billable</p>
+        <h1>Employee Data Managemnt</h1>
+        <p>A Comprehensive Directory of Employee Billable</p>
     </div>
     <br>
    
@@ -38,34 +34,53 @@
             <h3 class="panel-title"> Current Employee</h3>
         </div>
         <div class="panel-body">
+            <table class="table table-bordered">
+            <tr>
+            <th>Employee Name</th>  
+            <th>Role</th>
+            <th>Start Date</th>
+            <th>Months Worked</th>
+            <th>Monthly Rate ($)</th>
+            <th>Total Billed ($)</th>
+            </tr>
+            <tr id="display">
+                <td id="employee-display"></td>
+                <td id="role-display"></td>
+                <td id="startDate-display"></td> 
+                <td id="monthWorked-display"></td>
+                <td id="monthRate-display"></td>  
+                <td id="total-display"></td> 
+            </tr>
+            </table>
+            <hr>
                <div id="user-list"></div> 
         </div>
     </div>
      <div class="panel panel-default">
         <div class="panel-heading" style="background-color: #26275C; color: white;">
-            <h3 class="panel-title"><span class="glyphicon glyphicon-list-alt"></span> Add Employee</h3>
+            <h3 class="panel-title"> Add Employee</h3>
         </div>
 
         <div class="panel-body">
             <div class="form-group">
                 <label for="search">Employee Name</label>
-                <input type="text" class="form-control" id="usr">
+                <input type="text" class="form-control" id="employeeName">
             </div>
             <div class="form-group">
                 <label for="search">Role</label>
-                <input type="text" class="form-control" id="usr">
+                <input type="text" class="form-control" id="role">
             </div>
          
             <div class="form-group">
                 <label for="search">Start Year (DD/MM/YY - ex:01/01/89)</label>
-                <input type="text" class="form-control" id="usr">
+                <input type="text" class="form-control" id="date">
             </div>            
             <div class="form-group">
                 <label for="search"> Monthly Rate: </label>
-                <input type="text" class="form-control" id="usr">
+                <input type="text" class="form-control" id="month">
             </div>
             <div>
-                <button type="button" class="btn btn-default"> Submit</button>
+                <button type="button" class="btn btn-default" id="submitButton"> Submit</button>
                
             </div>   
         </div>
@@ -75,6 +90,6 @@
 </div>
 
 </body>
-
 <script src = "assets/javascript/app.js"></script>
+
 </html>
