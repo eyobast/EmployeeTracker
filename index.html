@@ -7,21 +7,11 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <script src = "https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
     <title>Employee Data</title>
-    <script src = "assets/css/style.css"></script>
- <!--    <script src = "https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script> -->
-    <style type="text/css">
-     .jumbotron {
-            text-align: center;
-            background-color: black; 
-            color: white;
-        }  
-    </style>
 </head>
 
 <body>
-   <script src = "https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
-
 <div class="container">
     <div class="jumbotron">
         <h1>Employee Data Managemnt</h1>
@@ -34,24 +24,23 @@
             <h3 class="panel-title"> Current Employee</h3>
         </div>
         <div class="panel-body">
-            <table class="table table-bordered">
-            <tr>
+            <table class="table table-striped">
+            <thead>
             <th>Employee Name</th>  
             <th>Role</th>
             <th>Start Date</th>
             <th>Months Worked</th>
             <th>Monthly Rate ($)</th>
             <th>Total Billed ($)</th>
-            </tr>
-            <tr id="display">
-                <td id="employee-display"></td>
-                <td id="role-display"></td>
-                <td id="startDate-display"></td> 
-                <td id="monthWorked-display"></td>
-                <td id="monthRate-display"></td>  
-                <td id="total-display"></td> 
-            </tr>
+            </thead>
+            <tbody>
+                <!-- our employee list display here -->
+                <!-- dynamically created on js -->
+        
+            </tbody>
+            
             </table>
+          
             <hr>
                <div id="user-list"></div> 
         </div>

@@ -8,9 +8,10 @@
     messagingSenderId: "914407505844"
   };
   firebase.initializeApp(config);
-  var database = firebase.database();
-var employeeName=0;
-var role=0;
+
+var database = firebase.database();
+var employeeName="";
+var role="";
 var startDate=0;
 var monthlyRate=0;
 
@@ -30,30 +31,47 @@ database.ref().push({
         monthlyRate: monthlyRate
       });
 
-var display;
-display=$("#display");
-$("#employee-display").append(display);
-$("#role-display").append(display);
-$("#startDate-display").append(display);
-$("#monthWorked-display").append(display);
 });
-
+//to get the data from our database
 database.ref().on("value", function(snapshot) {
 
-      // Log everything that's coming out of snapshot
-    
-      console.log(snapshot.val().employeeName);
-      console.log(snapshot.val().role);
-      console.log(snapshot.val().startDate);
-      console.log(snapshot.val().monthlyRate);
+//clearing the table before append the new input
+$("tbody").empty();
 
-      // Change the HTML to reflect
-      $("#employee-display").html(snapshot.val().employeeName);
-      $("#role-display").html(snapshot.val().role);
-      $("#startDate-displayy").html(snapshot.val().startDate);
-      $("#monthWorked-display").html(snapshot.val().monthlyRate);
+//"for every employee..."
+for (var employee in snapshot.val()) {
 
-      // Handle the errors
+  //new Date()-monthsWorkedTd;
+  
+//dynamically creating td for each employee and assign it to a value
+  var employeeNameTd = $("<td class='employeeName'>").text(snapshot.val()[employee].employeeName);
+  var roleTd=$("<td class='role'>").text(snapshot.val()[employee].role);
+  var startDateTd=$("<td class='startDate'>").text(snapshot.val()[employee].startDate);
+  var monthlyRateTd=$("<td class='monthlyRate'>").text(snapshot.val()[employee].monthlyRate);
+  
+//calculating the month
+  var month = (new Date() - new Date(snapshot.val()[employee].startDate)) / (1000 * 60 * 60 * 24 * 30);
+  //toString to change the text value to string
+  var monthsWorkedTd=$("<td class='monthsWorked'>").text(month.toFixed(2).toString());
+
+//calculating the total bill
+  var total=(month*snapshot.val()[employee].monthlyRate);
+  //toFixed(2) to round it to decimal number 
+  var totalBilledTd=$("<td class='totalBilled'>").text(total.toFixed(2));
+
+//append all tds to a new tr
+  var employeeRow = $("<tr>")
+    .append(employeeNameTd)
+    .append(roleTd)
+    .append(startDateTd)
+    .append(monthsWorkedTd)
+    .append(monthlyRateTd)
+    .append(totalBilledTd);
+
+//append the dynamically created tr to tbody
+  $("tbody").append(employeeRow);
+
+} // Handle the errors
     }, function(errorObject) {
       console.log("Errors handled: " + errorObject.code);
-    });
+});
